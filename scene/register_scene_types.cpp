@@ -196,6 +196,7 @@
 #include "scene/2d/skeleton_2d.h"
 #include "scene/2d/sprite_2d.h"
 #include "scene/2d/tile_map_layer.h"
+#include "scene/25d/tile_map_layer_25d.h" //CUSTOM
 #include "scene/2d/visible_on_screen_notifier_2d.h"
 #include "scene/resources/2d/polygon_path_finder.h"
 #include "scene/resources/2d/skeleton/skeleton_modification_2d.h"
@@ -845,6 +846,7 @@ void register_scene_types() {
 	GDREGISTER_CLASS(TileMapPattern);
 	GDREGISTER_CLASS(TileData);
 	GDREGISTER_CLASS(TileMapLayer);
+	GDREGISTER_CLASS(TileMapLayer25D); //CUSTOM
 	GDREGISTER_CLASS(Parallax2D);
 	GDREGISTER_CLASS(RemoteTransform2D);
 
