@@ -986,7 +986,7 @@ TypedArray<Vector2i> TileMapLayer25D::get_used_cells_by_id(int16_t p_z, int p_so
 }
 
 Rect2i TileMapLayer25D::get_used_rect(int16_t p_z) const {
-    if(!tile_map_layer_levels.has(p_z)) return Rect2i();
+  if(!tile_map_layer_levels.has(p_z)) return Rect2i();
 
 	// Return the rect of the currently used area.
 	if (used_rect_cache_dirty) {
@@ -1138,15 +1138,30 @@ Vector2i TileMapLayer25D::local_to_map_level(const Vector2 &p_pos) const {
 Vector3 TileMapLayer25D::map_to_local(const Vector2i &p_pos, int16_t p_z) const {
 	ERR_FAIL_COND_V(tile_set.is_null(), Vector3());
     
-    Vector2 level_pos = tile_set->map_to_local(p_pos);
+  Vector2 level_pos = tile_set->map_to_local(p_pos);
 	return Vector3(level_pos.x, level_pos.y, p_z * 24);
 }
 
 Vector3i TileMapLayer25D::local_to_map(const Vector3 &p_pos) const {
 	ERR_FAIL_COND_V(tile_set.is_null(), Vector3i());
 
-    Vector2i level_coords = tile_set->local_to_map(Vector2(p_pos.x, p_pos.y));
+	Vector2i level_coords = tile_set->local_to_map(Vector2(p_pos.x, p_pos.y));
 	return Vector3i(level_coords.x, level_coords.y, (int16_t)floor(p_pos.z / 24));
+}
+
+Vector2i TileMapLayer25D::local_viewport_to_map(const Vector2 &p_pos, int16_t p_z) const {
+	ERR_FAIL_COND_V(tile_set.is_null(), Vector2i());
+	return tile_set->local_to_map(Vector2(p_pos.x, p_pos.y + (24.0f * 0.75f * (float)p_z)));
+}
+
+Vector2 TileMapLayer25D::map_to_local_viewport(const Vector2i &p_coords, int16_t p_z) const {
+	ERR_FAIL_COND_V(tile_set.is_null(), Vector2());
+	return tile_set->map_to_local(p_coords) + Vector2(0, -(float)p_z * 24.0f * 0.75f);
+}
+
+Vector2i TileMapLayer25D::get_coords_from_mouse_position(int16_t p_z) const {
+	ERR_FAIL_COND_V(tile_set.is_null(), Vector2i());
+	return local_viewport_to_map(get_local_mouse_position(), p_z);
 }
 
 void TileMapLayer25D::set_enabled(bool p_enabled) {

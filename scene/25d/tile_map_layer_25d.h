@@ -244,7 +244,6 @@ public:
 	virtual bool _edit_is_selected_on_click(const Point2 &p_point, double p_tolerance) const override;
 #endif*/
 
-	// TileMap node.
 	const HashMap<int16_t, HashMap<Vector2i, TCG::CellData>> &get_tile_map_layer_levels() const {
 		return tile_map_layer_levels;
 	}
@@ -312,6 +311,10 @@ public:
 
 	Vector3 map_to_local(const Vector2i &p_coords, int16_t z) const;
 	Vector3i local_to_map(const Vector3 &p_pos) const;
+
+	Vector2i local_viewport_to_map(const Vector2 &p_pos, int16_t p_z) const;
+	Vector2 map_to_local_viewport(const Vector2i &p_coords, int16_t p_z) const;
+	Vector2i get_coords_from_mouse_position(int16_t p_z) const;
 
 	// --- Accessors ---
 	void set_tile_map_data_from_array(const Vector<uint8_t> &p_data);

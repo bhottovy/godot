@@ -187,6 +187,7 @@ gmon.out
 .sconsign*.dblite
 .scons_env.json
 .scons_node_count
+.build.bat
 
 # Sourcetrail
 *.srctrl*

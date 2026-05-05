@@ -1026,6 +1026,7 @@ void EditorSettings::_load_defaults(Ref<ConfigFile> p_extra_config) {
 	_initial_set("editors/tiles_editor/display_grid", true);
 	_initial_set("editors/tiles_editor/highlight_selected_layer", true);
 	_initial_set("editors/tiles_editor/grid_color", Color(1.0, 0.5, 0.2, 0.5));
+	_initial_set("editors/tiles_editor/grid_color_z0", Color(0.5, 0.25, 1.0, 0.5));
 
 	// Polygon editor
 	_initial_set("editors/polygon_editor/point_grab_radius", has_touchscreen_ui ? 32 : 8);
