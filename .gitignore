@@ -188,7 +188,7 @@ gmon.out
 .scons_env.json
 .scons_node_count
 .build.bat
-.build.sh
+build.sh
 
 # Sourcetrail
 *.srctrl*
